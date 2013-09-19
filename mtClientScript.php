@@ -132,9 +132,9 @@ class mtClientScript extends CClientScript {
 		return parent::registerCssFile($name);
 	}
 
-	public function registerScriptFileWithTimestamp($name) {
+	public function registerScriptFileWithTimestamp($name,$position=null) {
 		$name .= '?t=' . $this->filemtimeCheck($name);
-		return parent::registerScriptFile($name);
+		return parent::registerScriptFile($name,$position);
 	}
 
 	private function combineScripts() {
