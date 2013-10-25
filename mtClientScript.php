@@ -256,6 +256,7 @@ class mtClientScript extends CClientScript {
 			),
 			'2>&1',
 		));
+		$cmd=sprintf('IS_RUNNING=`ps -efa | grep "%1$s" | grep -v grep | wc -l`; if [ "$IS_RUNNING" -eq 0 ]; then %1$s; fi', $cmd);
 		$return = shell_exec($cmd);
 		if (!empty($return))
 			Yii::log($return, CLogger::LEVEL_ERROR, 'ClientScript');
@@ -280,9 +281,9 @@ class mtClientScript extends CClientScript {
 					$this->_assetsPath . DS . $outFile,
 					$this->closureConfig,
 					$temp);
-					$cmd = sprintf('IS_RUNNING=`ps -efa | grep "%1$s" | grep -v grep | wc -l`; if [ "$IS_RUNNING" -eq 0 ]; then %1$s; fi', $cmd);
 				break;
 		}
+		$cmd = sprintf('IS_RUNNING=`ps -efa | grep "%1$s" | grep -v grep | wc -l`; if [ "$IS_RUNNING" -eq 0 ]; then %1$s; fi', $cmd);
 		$return = shell_exec($cmd);
 	}
 }
