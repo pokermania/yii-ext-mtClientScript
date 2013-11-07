@@ -75,22 +75,12 @@ class mtClientScript extends CClientScript {
 
 	public function init() {
 		parent::init();
-		if (!is_executable($this->javaPath)) {
-			throw new Exception('Java not found or not accessable');
-		}
 		if (!is_readable($this->yuicPath)) {
 			$this->yuicPath = dirname(__FILE__) . DS . 'yuicompressor-2.4.8pre.jar';
 		}
 		if (!is_readable($this->closurePath)) {
 			$this->closurePath = dirname(__FILE__) . DS . 'compiler.jar';
 		}
-		if (!file_exists($this->yuicPath)) {
-			throw new Exception('YUI compressor not found');
-		}
-		if (!file_exists($this->closurePath)) {
-			throw new Exception('Google closure compiler not found');
-		}
-
 		$this->_baseUrl = Yii::app()->baseUrl;
 		$this->_basePath = YiiBase::getPathOfAlias('webroot');
 		$this->_assetsPath = $this->_basePath . str_replace($this->_baseUrl, '', $this->getCoreScriptUrl());
